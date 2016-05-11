@@ -1,0 +1,149 @@
+<!DOCTYPE html >
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, intial-scale=1">
+	
+	<title>Report Disease Outbreak</title>
+	
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<link rel='stylesheet' href="custom.css">
+  </head>
+
+  <body onload="initialize()">
+	<div class="container">
+		<header class="row">
+			</header>
+			<div class="row"> <!-- navbar -->
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"> </span>
+								<span class="icon-bar"> </span>
+								<span class="icon-bar"> </span>
+							</button>
+							<a class="navbar-brand" href="#">Living Suitability Model</a>
+						</div>
+						
+						<div>
+						
+						<div class="collapse navbar-collapse" id="navbar">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="index.html">Home</a></li>
+								
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Retreival
+										<span class="carat"> </span></a>
+										<ul class="dropdown-menu">
+											<li><a href="show_Data.php">Show Suitability Data</a></li>
+											<li><a href="gelocation.html">Mapping</a></li>
+											
+										</ul>
+								</li>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maryland
+										<span class="carat"> </span></a>
+										<ul class="dropdown-menu">
+											<li><a href="SlideShow.html">Gallery</a></li>																																	
+																				
+										</ul>
+								</li>								
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+							</div>
+						</div>
+					</div><!-- end container-fluid -->
+				</nav>			
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEO8qYR_94QvNaiOYs0fzKMs9UTvw8cDg"> </script> 
+		<script type="text/javascript"> 
+
+		var DebtKML;
+		var CrimeKML;
+		var TwoBedKML;
+		var HomeKML;
+		var AllKML;
+		var MDKML;		
+		var map;
+		
+		function initialize() { 
+			var mapOptions = { 
+				center: new google.maps.LatLng(39.2895699983126, -76.60908501586914), 
+				zoom: 17, 
+				mapTypeId: google.maps.MapTypeId.ROADMAP };//end mapOptions 
+			map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);//displays map	
+		
+					
+			DebtKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/StudetDebtLayerL.kmz');
+				DebtKML.setMap(map);
+			CrimeKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/Crime.kmz');
+				CrimeKML.setMap(map);
+			TwoBedKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/TwoBedroomMedian.kmz');
+				TwoBedKML.setMap(map);
+			HomeKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/HomesSoldPerSqftMedian.kmz');
+				HomeKML.setMap(map);
+			AllKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/AllStats.kmz');
+				AllKML.setMap(map);
+			MDKML = new google.maps.KmlLayer('http://129.2.24.54:8080/mkemal1/GEOG797%20Final%20Project/KML/MD_Cnty_Bnd_Project_LayerToK.kmz');
+				MDKML.setMap(map);	
+				
+			var legend = document.getElementById("legend");
+			map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById("legend"));
+			
+		
+				
+			}//end initialize
+			function toggleLayer(this_layer){
+					if(this_layer.getMap()){
+					this_layer.setMap(null);
+					}else{
+					this_layer.setMap(map);
+				}
+				}// end toggleLayer
+				function check() {
+				document.getElementById("MDKML").checked = false;
+    			document.getElementById("DebtKML").checked = true;
+    			document.getElementById("CrimeKML").checked = true;
+    			document.getElementById("TwoBedKML").checked = true;
+    			document.getElementById("HomeKML").checked = true;
+    			document.getElementById("AllKML").checked = true;
+   			
+			}
+		</script>
+		</div><!--end nav-->
+		<div class="jumbotron">		
+			<div id="content_map">
+			    <h3 align="center">Data Comparison Map</h3>
+				<div align="center">
+					<input id="DebtKML" type= "checkbox"  onclick="toggleLayer(DebtKML);" checked> Student Debt Default
+		 			<input id="CrimeKML" type= "checkbox"  onclick="toggleLayer(CrimeKML);" checked> Crime Rate
+		 			<input id="TwoBedKML" type= "checkbox"  onclick= "toggleLayer(TwoBedKML);" checked> Two Bedroom Rental
+		 			<input id="HomeKML" type= "checkbox"  onclick= "toggleLayer(HomeKML);" checked> Home Cost Per SQFT
+		 			<input id="AllKML" type= "checkbox"  onclick= "toggleLayer(AllKML);" checked> All Four Stat
+					<input id="MDKML" type= "checkbox"  onclick= "toggleLayer(MDKML);" checked> MD County Layer
+		 			
+	 			
+	 			</div><!--end legend-->
+	        	<div id="map_canvas" style="width=100%; height:700px;">
+	       
+	        	</div><!--map_canvas-->
+	        	
+	  
+		
+		
+			    <h3 align="center">Median House Cost and Rental</h3>
+			    <div id="testing123"><p><iframe width="100%" scrolling="no" height="700" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1Nu1tqNhOepwNT4EDCHSD22qMzNdNOtuzRLmNYqU&amp;viz=MAP&amp;h=false&amp;lat=38.06539235133249&amp;lng=-95.9765625&amp;t=1&amp;z=5&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=GEOCODABLE"></iframe></p>
+				</div>
+	 		</div>
+ 
+		</div>
+			<footer>
+				<p class="text-right">All contents &amp; All rights reserved. &copy; Mohammed Kemal</p>
+			</footer>
+	</div>
+</body>
+
+</html>

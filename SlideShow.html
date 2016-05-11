@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"> <!-- For intranet testing only, remove in production. -->
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>Slide Show</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+  <title>Show Education Statistics</title>
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+  <link href="jquery.bxslider.css" rel="stylesheet" />	
+  <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+  
+  <script src="jquery.bxslider.min.js"></script>
+
+<link rel="stylesheet" href="../lib/w3.css">
+<style>
+.mySlides {display:none}
+</style>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-red", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-red";
+}
+</script>
+
+	
+  <link rel='stylesheet' href="custom.css">
+</head>
+<body>
+	<div class="container">
+		<header class="row">
+			</header>
+			<div class="row"> <!-- navbar -->
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"> </span>
+								<span class="icon-bar"> </span>
+								<span class="icon-bar"> </span>
+							</button>
+							<a class="navbar-brand" href="#">Living Suitability Model</a>
+						</div>
+						
+						<div>
+						
+						<div class="collapse navbar-collapse" id="navbar">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="index.html">Home</a></li>
+								
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Data Retreival
+										<span class="carat"> </span></a>
+										<ul class="dropdown-menu">
+											<li><a href="show_Data.php">Show Suitability Data</a></li>
+											<li><a href="gelocation.html">Mapping</a></li>
+											
+										</ul>
+								</li>
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maryland
+										<span class="carat"> </span></a>
+										<ul class="dropdown-menu">
+											<li><a href="SlideShow.html">Gallery</a></li>																																	
+																				
+										</ul>
+								</li>								
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+							</div>
+						</div>
+					</div><!-- end container-fluid -->
+				</nav>					
+			  	<div class="jumbotron">
+
+					<div>
+						<h3 >Study Area</h3>
+						<p>The study area for this project is focused on Maryland. According to the Governor’s Office of Crime Control and Prevention, 
+							Maryland had 185,422 crimes in 2013 alone. This included 27,720 violent crimes and 157,702 property crimes. For most of the 
+							categories presented in the table below—with the exception of homicides, which ranked the 2nd lowest ever reported—Maryland crime 
+							rates are the lowest they have ever been reported.</p>	
+		
+						<h3>Importance</h3>	
+						<p>
+							Often times, the general public do not recognize the reality of student debt and crime rates and their impact on the environment and the public population. Crime rates have a major influence
+							 on the viability of a location for the ideal home. Creating a GIS application for this project will allow users to have an interactive map that allows them to view data for student debt, crime, 
+							 and median single family home rental costs. This is essential information every potential homeowner needs. An individual needs to consider not only the viability of the area of choice based on 
+							 accessibility to transportation and schools, but also crime statistics and the wealth of the neighborhood, as these statistics greatly influence the population. 
+						</p>
+						<h3>Objective</h3>
+						<p>The objective of this project is to aid new home renters and buyers to make an informative decision when finding a place to live. The way this task is completed is by incorporating data for crime
+							 statistics, air pollution and housing costs and analyzing the best fit for the user. Often times, new home renters and buyers only make decisions on housing by researching housing costs and travel
+							  distance to their workplace. Though, this is an essential contributor to choosing a home, the livelihood of a person is far more valuable. So, what better way of insuring this than finding out what 
+							  are the appropriate living conditions that are best fitting to the buyer/renter’s requirements.
+						</p>
+	
+					<h3 align="center">Please Click "Next" to view Slideshow</h3>
+					<div class="w3-content" style="max-width:800px">
+						<img class="mySlides" src="images/Results/AllDataAvailable.png" style="width:100%">
+						<img class="mySlides" src="images/Results/Crime.png" style="width:100%">
+						<img class="mySlides" src="images/Results/HomesSoldPerSqftMedian.png" style="width:100%">
+						<img class="mySlides" src="images/Results/StudentDebt.png" style="width:100%">
+						<img class="mySlides" src="images/Results/Two Bedroom Median.png" style="width:100%">
+					</div>
+					
+					<div class="w3-center">
+					  <div class="w3-section">
+					    <button class="w3-btn" onclick="plusDivs(-1)">❮ Prev</button>
+					    <button class="w3-btn" onclick="plusDivs(1)">Next ❯</button>
+					  </div>
+					  <button class="w3-btn demo" onclick="currentDiv(1)">1</button> 
+					  <button class="w3-btn demo" onclick="currentDiv(2)">2</button> 
+					  <button class="w3-btn demo" onclick="currentDiv(3)">3</button> 
+					  <button class="w3-btn demo" onclick="currentDiv(4)">4</button> 
+					  <button class="w3-btn demo" onclick="currentDiv(5)">5</button> 
+
+					  
+					</div>								
+				</div>
+		</div>
+		<footer>
+			<p class="text-right">All contents &amp; All rights reserved. &copy; Mohammed Kemal</p>
+		</footer>
+	</div>
+	
+
+</body>
+</html>
